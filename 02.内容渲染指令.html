@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 导入vue的脚本文件 -->
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1、文本插值的模板渲染语法 -->
+        <p>姓名: {{username}}</p>
+        <p>性别: {{gender}}</p>
+
+        <p>{{desc}}</p>
+
+        <!-- 2、使用v-html指令来做模板渲染，即将data对象函数返回的desc元素渲染为html内容，也就是渲染为a标签表示的超链接 -->
+        <p v-html="desc"></p>
+    </div>
+
+    <script>
+        const vm = {
+            data: function () {
+                return {
+                    username: 'zhangsan',
+                    gender: '男',
+                    desc: '<a href="http://www.baidu.com">百度</a>'
+                }
+            }
+        }
+
+        const app = Vue.createApp(vm)
+        app.mount('#app');
+    </script>
+</body>
+
+</html>

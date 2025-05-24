@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 导入vue的脚本文件 -->
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3>count的值为: {{count}}</h3>
+        <!-- 1、使用事件绑定指令执行方法 -->
+        <button v-on:click="addCount">+1</button>
+        <!-- 1、使用事件绑定指令执行内联表达式，其中v-on:简写为@ -->
+        <button @click="count += 1">+1</button>
+    </div>
+
+    <script>
+        const vm = {
+            // data选项后面为数据源
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            // methods选项后面为自定义方法
+            methods: {
+                 addCount() {
+                    // this代表我们创建的vm对象
+                    this.count += 1
+                }
+            }
+        }
+
+        const app = Vue.createApp(vm)
+        app.mount('#app');
+    </script>
+</body>
+
+</html>

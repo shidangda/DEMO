@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 导入vue的脚本文件 -->
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @Click="flag = !flag">Toggle Flag</button>
+
+        <!-- 1、v-if条件渲染指令，不显示则会隐藏p标签 -->
+        <p v-if="flag">请求成功  --- 被 v-if 控制</p>
+        <!-- 2、v-show条件渲染指令，不显示仍然会在源代码里面存在p标签，性能更快，时候频繁切换显示状态的情况 -->
+        <p v-show="flag">请求成功  --- 被 v-show 控制</p>
+        
+    </div>
+
+    <script>
+        const vm = {
+            // data选项后面为数据源
+            data: function () {
+                return {
+                    flag: false
+                }
+            }
+        }
+
+        const app = Vue.createApp(vm)
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
