@@ -11,11 +11,21 @@
 
 <body>
     <div id="app">
+        <!-- 添加用户的区域 -->
+        <div>
+            <input type="text" v-model="name" placeholder="请输入用户名">
+            <button @click="addNewUser">添加用户</button>
+        </div>
+
+        <!-- 用户列表区域 -->
         <ul>
-            <!-- v-for为列表渲染指令。如果不带括号则为：user in userList -->
-            <li v-for="(user, i) in userList">索引是:{{i}}, 姓名是: {{user.name}}</li>
+            <!-- v-for为列表渲染指令 -->
+            <li v-for="(user, i) in userList" :key="user.id">
+                <input type="checkbox"/>姓名是: {{user.name}}
+            </li>
         </ul>
-        
+        <!-- 1、v-for指令后面需要加上:key属性，key的值为唯一标识,用的是列表元素user的id，这样当ul中的列表元素新增时，旧元素的状态能被保留 -->
+
     </div>
 
     <script>
@@ -24,12 +34,30 @@
             data: function () {
                 return {
                     userList: [
-                        {id: 1, name: 'zhangsan'},
-                        {id: 2, name: 'lisi'},
-                        {id: 3, name: 'wangwu'}
-                    ]
+                        { id: 1, name: 'zhangsan' },
+                        { id: 2, name: 'lisi' },
+                        { id: 3, name: 'wangwu' }
+                    ],
+                    // 输入的用户名
+                    name: '',
+                    // 下一个可用的id值
+                    nextId: 3
+                }
+            },
+            // methods选项后面为自定义方法
+            methods: {
+                // 添加用户的方法
+                addNewUser() {
+                    // 1、判断用户名是否为空
+                    this.userList.unshift({
+                        id: this.nextId,
+                        name: this.name
+                    })
+                    this.name = ''
+                    this.nextId++
                 }
             }
+
         }
 
         const app = Vue.createApp(vm)
